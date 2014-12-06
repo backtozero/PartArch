@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="364.0" prefWidth="554.0" styleClass="mainFxmlClass" stylesheets="@exceptiondialog.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane hgap="2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="204.0" prefWidth="642.0" vgap="2.0" AnchorPane.bottomAnchor="-13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints maxWidth="294.0" minWidth="10.0" prefWidth="108.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="492.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="105.0" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="200.0" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="50.0" minHeight="40.0" prefHeight="40.0" valignment="CENTER" />
+        </rowConstraints>
+         <padding>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Button fx:id="okButton" mnemonicParsing="false" onAction="#onOkButton" prefHeight="25.0" prefWidth="75.0" text="Ok" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onOkButton" prefHeight="25.0" prefWidth="67.0" text="Cancel" />
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+               </padding>
+            </HBox>
+            <ImageView fitHeight="92.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../icons/sign_error_circle.png" />
+               </image>
+            </ImageView>
+            <AnchorPane GridPane.columnSpan="2">
+               <children>
+                  <Label fx:id="shortMessageLabel" prefHeight="55.0" prefWidth="531.0" text="Base error information" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Copy to clipboard" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextArea fx:id="longMessageTextArea" prefHeight="80.0" prefWidth="451.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

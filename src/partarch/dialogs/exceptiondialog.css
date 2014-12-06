@@ -1,0 +1,11 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: lightgray;
+}
+
+.box {
+    -fx-alignment: CENTER_RIGHT;
+}

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.cell.*?>
+<?import partarch.fx.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.*?>
+
+<GridPane hgap="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="687.0" styleClass="mainFxmlClass" stylesheets="@exchangepartition.css" vgap="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="465.0" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="205.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="383.0" minHeight="3.0" prefHeight="254.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="409.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+       <TitledPane collapsible="false" layoutX="11.0" layoutY="165.0" prefHeight="200.0" prefWidth="200.0" text="Source Table " GridPane.columnSpan="2">
+           <content>
+               <HBox alignment="CENTER" prefHeight="67.0" prefWidth="382.0" spacing="3.0" styleClass="hbox">
+                   <children>
+                       <VBox prefHeight="42.0" prefWidth="276.0" HBox.hgrow="SOMETIMES">
+                           <children>
+                               <Label text="SCHEMA.TABLE_NAME" />
+                               <TextField fx:id="sourceTableTextField" editable="false" text="SOURCE SCHEMA.TABLE_NAME" />
+                           </children>
+                       </VBox>
+                   </children>
+               </HBox>
+           </content>
+       </TitledPane>
+      <TitledPane collapsible="false" layoutX="11.0" layoutY="11.0" prefHeight="200.0" prefWidth="200.0" text="Intermediate Table " GridPane.columnSpan="2" GridPane.rowIndex="1">
+         <content>
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="382.0" spacing="3.0" styleClass="hbox">
+               <children>
+                  <VBox prefHeight="42.0" prefWidth="276.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label text="SCHEMA.TABLE_NAME" />
+                        <HBox spacing="5.0">
+                           <children>
+                              <ComboBoxFilter fx:id="intermediateTableComboBox" editable="true" prefHeight="23.0" prefWidth="484.0" />
+                              <Button mnemonicParsing="false" onAction="#countButton" text="Count(*)" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </TitledPane>
+            <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Destination Table " GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <content>
+            <HBox alignment="CENTER" prefHeight="67.0" prefWidth="382.0" spacing="3.0" styleClass="hbox">
+               <children>
+                  <VBox prefHeight="42.0" prefWidth="276.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label text="SCHEMA.TABLE_NAME" />
+                        <HBox spacing="5.0">
+                           <children>
+                               <ComboBoxFilter fx:id="destinationTableComboBox" editable="true" prefHeight="23.0" prefWidth="484.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content></TitledPane>
+      <TableView fx:id="partitionsTableView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" GridPane.rowSpan="2">
+        <columns>
+            <TableColumn fx:id="checkBoxTableColumn" maxWidth="34.0" minWidth="26.0" prefWidth="34.0" resizable="false" sortable="false">
+                <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../icons/checklist3.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
+                <cellValueFactory>
+                    <PropertyValueFactory property="checked" />
+                </cellValueFactory>
+                <cellFactory>
+                    <partarch.fx.CheckBoxCellFactory />
+                </cellFactory>
+            </TableColumn>
+            <TableColumn prefWidth="85.0" text="Name"> <cellValueFactory><PropertyValueFactory property="partitionName" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="276.0" text="HIGH_VALUE"> <cellValueFactory><PropertyValueFactory property="highValue" /></cellValueFactory></TableColumn>
+            <TableColumn prefWidth="60.0" text="LENGTH"><cellValueFactory><PropertyValueFactory property="highValueLength" /></cellValueFactory> </TableColumn>
+        </columns>
+      </TableView>
+      <VBox spacing="1.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <TitledPane collapsible="false" minHeight="255.0" text="Additional Clause">
+               <content>
+                  <VBox prefHeight="264.0" prefWidth="205.0" spacing="5.0" styleClass="vbox" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <VBox spacing="2.0" styleClass="vbox">
+                           <children>
+                              <Label text="Validation Options" />
+                              <Separator prefWidth="200.0" />
+                              <RadioButton fx:id="withValidationRadioButton" mnemonicParsing="false" selected="true" text="WITH VALIDATION">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="validationToggleGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="withoutValidationRadioButton" mnemonicParsing="false" text="WITHOUT VALIDATION" toggleGroup="$validationToggleGroup" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox layoutX="15.0" layoutY="23.0" spacing="2.0" styleClass="vbox">
+                           <children>
+                              <Label text="Index Options" />
+                              <Separator prefWidth="200.0" />
+                              <RadioButton fx:id="updateIndexesRadioButton" mnemonicParsing="false" text="UPDATE INDEXES">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="indexesToggleGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="updateGlobalIndexesRadioButton" mnemonicParsing="false" text="UPDATE GLOBAL INDEXES" toggleGroup="$indexesToggleGroup" />
+                              <Separator prefWidth="200.0" />
+                              <CheckBox fx:id="includingIndexesCheckBox" mnemonicParsing="false" selected="true" text="INCLUDING INDEXES" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="55.0" prefWidth="185.0" spacing="2.0" styleClass="vbox">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <Label text="Lock Table Options" />
+                              <Separator prefWidth="200.0" />
+                              <RadioButton fx:id="sharedModeRadioButton" mnemonicParsing="false" selected="true" text="SHARED MODE">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="lockTableToggleGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="exclusiveModeNowaitRadioButton" mnemonicParsing="false" text="EXCLUSIVE MODE NOWAIT" toggleGroup="$lockTableToggleGroup" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </TitledPane>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" styleClass="hbox" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <Button mnemonicParsing="false" onAction="#cancelButton" text="Cancel" />
+            <Button mnemonicParsing="false" onAction="#generateDDLButton" text="Generate DDL" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</GridPane>

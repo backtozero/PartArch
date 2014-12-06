@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="391.0" styleClass="mainFxmlClass" stylesheets="@logindialog.css" vgap="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="48.0" minHeight="48.0" prefHeight="48.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="40.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="140.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="top" GridPane.columnSpan="4">
+         <children>
+            <ComboBox fx:id="savedCredentialsComboBox" prefHeight="25.0" prefWidth="275.0" promptText="Saved Connection" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="191.0" layoutY="100.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+          <children>
+              <TextField fx:id="aliasTextField" promptText="Alias">
+               <tooltip>
+                  <Tooltip text="This field cannot be empty" />
+               </tooltip></TextField>
+          </children>
+          <padding>
+              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+          </padding>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <TextField fx:id="userNameTextField" promptText="UserName" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="191.0" layoutY="155.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <children>
+            <PasswordField fx:id="passwordTextField" promptText="Password" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="191.0" layoutY="275.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <children>
+            <TextField fx:id="sidTextField" promptText="SID" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>      
+      <VBox alignment="CENTER" layoutX="191.0" layoutY="146.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+         <children>
+            <TextField fx:id="hostnameTextField" promptText="Hostname" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="191.0" layoutY="182.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+         <children>
+            <TextField fx:id="driverTypeTextField" disable="true" editable="false" promptText="thin" text="thin" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="191.0" layoutY="219.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+         <children>
+            <TextField fx:id="listenerPortTextField" promptText="Defaut (1521)" text="1521" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Label text="User Name:" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" layoutX="38.0" layoutY="70.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Label text="Password:" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" layoutX="38.0" layoutY="110.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <Label text="Service Name (SID):" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" layoutX="38.0" layoutY="146.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <children>
+            <Label text="Hostname:" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" layoutX="38.0" layoutY="185.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <Label text="Driver Type:" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_RIGHT" layoutX="38.0" layoutY="219.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+         <children>
+            <Label text="Listener Port:" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8">
+         <children>
+            <SplitMenuButton fx:id="connectButton" mnemonicParsing="false" onAction="#connectAndSaveHandle" text="Connect &amp; Save">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#deleteConnection" text="Delete Connection" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveConnection" text="Only Save" />
+              </items>
+            </SplitMenuButton>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButton" text="Cancel" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label text="Connection Alias:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+
+   </children>
+</GridPane>

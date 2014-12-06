@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.*?>
+<?import partarch.fx.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400" minWidth="400" prefHeight="800.0" prefWidth="1280.0" styleClass="mainPartArch" stylesheets="@PartArch.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="partarch.PartArchController">
+   <center>
+      <SplitPane fx:id="mainSplitPane" dividerPositions="0.3">
+         <items>
+            <VBox maxWidth="600.0" minWidth="300.0" prefWidth="400.0">
+               <children>
+                  <ToolBar maxHeight="42.0" prefHeight="42.0" prefWidth="200.0">
+                    <items>
+                      <Button fx:id="refreshTableListButton" mnemonicParsing="false" onAction="#onRefreshTableListButton" text="Refresh">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/refresh_schema.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Will empty all fetched data" />
+                           </tooltip></Button>
+                    </items>
+                  </ToolBar>
+                  <TreeTableView fx:id="tableSchemaTreeTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TreeTableColumn fx:id="tableNameTreeTableColumn" minWidth="150.0" prefWidth="204.0" text="Table Name">
+                        </TreeTableColumn>
+                        <TreeTableColumn fx:id="schemaNameTreeTableColumn" minWidth="91.0" prefWidth="108.0" text="Schema Name">                      
+                        </TreeTableColumn>
+                    </columns>
+                  </TreeTableView>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <ToolBar maxHeight="42.0" prefHeight="42.0" prefWidth="200.0">
+                    <items>
+                      <Button mnemonicParsing="false" onAction="#onRefreshTableButton" text="Refresh Table Data">
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/refresh57.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                    </items>
+                  </ToolBar>
+                  <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="891.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+                    <tabs>
+                      <Tab text="Partitions">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.3" layoutX="65.0" layoutY="54.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <HBox prefHeight="100.0" prefWidth="889.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <VBox layoutX="99.0" layoutY="-7.0" prefHeight="126.0" prefWidth="401.0" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" HBox.hgrow="NEVER">
+                                                         <children>
+                                                            <Label text="Partitioned columns" textAlignment="CENTER">
+                                                               <padding>
+                                                                  <Insets left="5.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TableView fx:id="partitionedColumnsTableView" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+                                                              <columns>
+                                                                <TableColumn prefWidth="57.0" text="Position"><cellValueFactory><PropertyValueFactory property="position" /></cellValueFactory></TableColumn>
+                                                                <TableColumn prefWidth="151.0" text="Column Name"><cellValueFactory><PropertyValueFactory property="columnName" /></cellValueFactory></TableColumn>
+                                                                <TableColumn prefWidth="88.0" text="Data Type"><cellValueFactory><PropertyValueFactory property="columnType" /></cellValueFactory></TableColumn>
+                                                                <TableColumn prefWidth="57.0" text="Table Position"><cellValueFactory><PropertyValueFactory property="tablePostition" /></cellValueFactory></TableColumn>
+                                                              </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox spacing="2.0" HBox.hgrow="SOMETIMES">
+                                                         <children>
+                                                            <Label text="Table Partition Info" textAlignment="CENTER">
+                                                               <padding>
+                                                                  <Insets left="5.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <TableView fx:id="tableInfoTableView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="SOMETIMES" VBox.vgrow="ALWAYS">
+                                                              <columns>
+                                                                <TableColumn minWidth="20.0" prefWidth="185.0" text="Parameter"><cellValueFactory><PropertyValueFactory property="parameter" /></cellValueFactory> </TableColumn>
+                                                                <TableColumn minWidth="20.0" prefWidth="128.0" text="Value"><cellValueFactory><PropertyValueFactory property="value" /></cellValueFactory> </TableColumn>
+                                                              </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <VBox layoutX="126.0" layoutY="-10.0" prefHeight="164.0" prefWidth="398.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <ToolBar maxHeight="42.0" prefHeight="42.0" prefWidth="200.0">
+                                                        <items>
+                                                          <Button mnemonicParsing="false" onAction="#onExchangeButton" text="Exchange">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@icons/exchange2.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                               </graphic></Button>
+                                                        </items>
+                                                      </ToolBar>
+                                                      <TableView fx:id="partitionsTableView" editable="true" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+                                                        <columns>
+                                                            <TableColumn fx:id="checkBoxTableColumn" maxWidth="34.0" minWidth="26.0" prefWidth="34.0" resizable="false" sortable="false">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@icons/checklist3.png" />
+                                                                     </image>
+                                                                  </ImageView>
+                                                               </graphic>
+                                                               <cellValueFactory><PropertyValueFactory property="checked" /></cellValueFactory>
+                                                               <cellFactory><partarch.fx.CheckBoxCellFactory /></cellFactory>
+                                                            </TableColumn>
+                                                            <TableColumn prefWidth="131.0" text="Partition Name"> <cellValueFactory><PropertyValueFactory property="partitionName" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="168.0" text="High Value"><cellValueFactory><PropertyValueFactory property="highValue" /></cellValueFactory> </TableColumn>
+                                                            <TableColumn prefWidth="75.0" text="High Value Length"><cellValueFactory><PropertyValueFactory property="highValueLength" /></cellValueFactory> </TableColumn>
+                                                            <TableColumn prefWidth="83.0" text="Tablespace"><cellValueFactory><PropertyValueFactory property="tableSpace" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="75.0" text="Num Rows"><cellValueFactory><PropertyValueFactory property="numRows" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="52.0" text="Blocks"><cellValueFactory><PropertyValueFactory property="blocks" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="52.0" text="Empty Blocks"> <cellValueFactory><PropertyValueFactory property="emptyBlocks" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="77.0" text="Last Analyzed"> <cellValueFactory><PropertyValueFactory property="lastAnalyzed" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="46.0" text="AVG Space"> <cellValueFactory><PropertyValueFactory property="avgSpace" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="85.0" text="Subpartition Count"> <cellValueFactory><PropertyValueFactory property="subpartitionCount" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="90.0" text="Compression"> <cellValueFactory><PropertyValueFactory property="compression" /></cellValueFactory></TableColumn>
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/partition.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                      </Tab>
+                        <Tab text="Subpartitions">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.2" layoutX="65.0" layoutY="54.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <items>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <VBox layoutX="99.0" layoutY="-7.0" prefHeight="164.0" prefWidth="398.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <TableView fx:id="subpartitionedColumnsTableView" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+                                                         <columns>
+                                                                <TableColumn prefWidth="57.0" text="Position"><cellValueFactory><PropertyValueFactory property="position" /></cellValueFactory></TableColumn>
+                                                                <TableColumn prefWidth="151.0" text="Column Name"><cellValueFactory><PropertyValueFactory property="columnName" /></cellValueFactory></TableColumn>
+                                                                <TableColumn prefWidth="88.0" text="Data Type"><cellValueFactory><PropertyValueFactory property="columnType" /></cellValueFactory></TableColumn>
+                                                                <TableColumn prefWidth="57.0" text="Table Position"><cellValueFactory><PropertyValueFactory property="tablePostition" /></cellValueFactory></TableColumn>
+                                                         </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <VBox layoutX="126.0" layoutY="-10.0" prefHeight="164.0" prefWidth="398.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <ToolBar prefHeight="40.0" prefWidth="200.0">
+                                                         <items>
+                                                            <Button mnemonicParsing="false" text="Button" />
+                                                         </items>
+                                                      </ToolBar>
+                                                      <TableView fx:id="subpartitionsTableView" VBox.vgrow="ALWAYS">
+                                                         <columns>
+                                                            <TableColumn prefWidth="101.0" text="Partition Name"> <cellValueFactory><PropertyValueFactory property="partitionName" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="124.0" text="Subpartition Name"> <cellValueFactory><PropertyValueFactory property="subpartitionName" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="147.0" text="High Value"><cellValueFactory><PropertyValueFactory property="highValue" /></cellValueFactory> </TableColumn>
+                                                            <TableColumn prefWidth="75.0" text="High Value Length"><cellValueFactory><PropertyValueFactory property="highValueLength" /></cellValueFactory> </TableColumn>
+                                                            <TableColumn prefWidth="95.0" text="Tablespace"><cellValueFactory><PropertyValueFactory property="tableSpace" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="75.0" text="Num Rows"><cellValueFactory><PropertyValueFactory property="numRows" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="52.0" text="Blocks"><cellValueFactory><PropertyValueFactory property="blocks" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="52.0" text="Empty Blocks"> <cellValueFactory><PropertyValueFactory property="emptyBlocks" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="85.0" text="Last Analyzed"> <cellValueFactory><PropertyValueFactory property="lastAnalyzed" /></cellValueFactory></TableColumn>
+                                                            <TableColumn prefWidth="47.0" text="AVG Space"> <cellValueFactory><PropertyValueFactory property="avgSpace" /></cellValueFactory></TableColumn>                                                            
+                                                            <TableColumn prefWidth="88.0" text="Compression"> <cellValueFactory><PropertyValueFactory property="compression" /></cellValueFactory></TableColumn>
+                                                         </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                       </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/subpartition.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Tab>
+                        <Tab text="Indexes">
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/index.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <content>
+                              <AnchorPane>
+                                 <children>
+                                    <SplitPane dividerPositions="0.2" orientation="VERTICAL" prefHeight="652.0" prefWidth="891.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <VBox layoutX="116.0" layoutY="-37.0" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <TableView fx:id="indexesTableView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                                        <columns>
+                                                                  <TableColumn maxWidth="34.0" minWidth="26.0" prefWidth="34.0" resizable="false" sortable="false">
+                                                                     <graphic>
+                                                                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                                           <image>
+                                                                              <Image url="@icons/partition.png" />
+                                                                           </image>
+                                                                        </ImageView>
+                                                                     </graphic>
+                                                                     <cellValueFactory>
+                                                                  <PropertyValueFactory property="partitioned" />
+                                                               </cellValueFactory>
+                                                               <cellFactory>
+                                                                         <CheckBoxCellFactory> </CheckBoxCellFactory>
+                                                               </cellFactory>
+                                                                  </TableColumn>
+                                                                  <TableColumn prefWidth="145.0" text="Index Name"> <cellValueFactory>
+                                                                  <PropertyValueFactory property="name" />
+                                                               </cellValueFactory>
+                                                            </TableColumn>
+                                                                  <TableColumn prefWidth="84.0" text="Uniqueness">
+                                                               <cellValueFactory>
+                                                                  <PropertyValueFactory property="uniqueness" />
+                                                               </cellValueFactory> </TableColumn>
+                                                                  <TableColumn prefWidth="56.0" text="Logging">
+                                                               <cellValueFactory>
+                                                                  <PropertyValueFactory property="logging" />
+                                                               </cellValueFactory> </TableColumn>
+                                                                  <TableColumn prefWidth="96.0" text="Num Rows">
+                                                               <cellValueFactory>
+                                                                  <PropertyValueFactory property="numRows" />
+                                                               </cellValueFactory>
+                                                            </TableColumn>
+                                                                  <TableColumn prefWidth="53.0" text="Degree">
+                                                               <cellValueFactory>
+                                                                  <PropertyValueFactory property="degree" />
+                                                               </cellValueFactory>
+                                                            </TableColumn>
+                                                                  <TableColumn prefWidth="76.0" text="Size MiB">
+                                                               <cellValueFactory>
+                                                                  <PropertyValueFactory property="size" />
+                                                               </cellValueFactory>
+                                                            </TableColumn>
+                                                                  <TableColumn prefWidth="117.0" text="Index Owner"> <cellValueFactory>
+                                                                  <PropertyValueFactory property="owner" />
+                                                               </cellValueFactory>
+                                                            </TableColumn>
+                                                                  <TableColumn prefWidth="99.0" text="Table Owner"> <cellValueFactory>
+                                                                  <PropertyValueFactory property="tableOwner" />
+                                                               </cellValueFactory>
+                                                            </TableColumn>
+                                                                  <TableColumn prefWidth="85.0" text="Table Name"> <cellValueFactory>
+                                                                  <PropertyValueFactory property="tableName" />
+                                                               </cellValueFactory>
+                                                            </TableColumn>                                                            
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <SplitPane dividerPositions="0.5" layoutX="280.0" layoutY="98.0" prefHeight="516.0" prefWidth="889.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                         <children>
+                                                            <TableView fx:id="indexInfoTableView" layoutX="120.0" layoutY="50.0" prefHeight="514.0" prefWidth="440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                              <columns>
+                                                                <TableColumn minWidth="20.0" prefWidth="185.0" text="Parameter"><cellValueFactory><PropertyValueFactory property="parameter" /></cellValueFactory> </TableColumn>
+                                                                <TableColumn minWidth="20.0" prefWidth="128.0" text="Value"><cellValueFactory><PropertyValueFactory property="value" /></cellValueFactory> </TableColumn>
+                                                              </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                         <children>
+                                                            <TableView fx:id="indexColumnsTableView" layoutX="82.0" layoutY="109.0" prefHeight="514.0" prefWidth="439.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                              <columns>
+                                                                <TableColumn minWidth="20.0" prefWidth="177.0" text="Column Name"><cellValueFactory><PropertyValueFactory property="name" /></cellValueFactory> </TableColumn>
+                                                                <TableColumn minWidth="20.0" prefWidth="67.0" text="Descend"><cellValueFactory><PropertyValueFactory property="descend" /></cellValueFactory> </TableColumn>
+                                                                <TableColumn minWidth="20.0" prefWidth="110.0" text="Data Type"><cellValueFactory><PropertyValueFactory property="dataType" /></cellValueFactory> </TableColumn>
+                                                                <TableColumn minWidth="20.0" prefWidth="61.0" text="Column Position"><cellValueFactory><PropertyValueFactory property="columnPosition" /></cellValueFactory> </TableColumn>                                                                
+                                                              </columns>
+                                                            </TableView>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </items>
+                                                </SplitPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+   </center>
+   <top>
+      <VBox>
+         <children>
+            <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem fx:id="menuCloseItem" mnemonicParsing="false" onAction="#handleMenuItemClose" text="Close">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/exit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="View">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showTasksMenuItem" text="Show Tasks">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/tasks2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#handleAboutDialog" text="About">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/info.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></MenuItem>
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+              <items>
+                <Button fx:id="openConnectionButton" mnemonicParsing="false" onAction="#handleOpenConnectionButton" text="Open Connection">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/connect_database.png" />
+                           </image>
+                           <viewport>
+                              <Rectangle2D height="15.0" minX="9.0" minY="9.0" width="15.0" />
+                           </viewport>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                         <Tooltip text="Connect to database" />
+                     </tooltip>
+                </Button>
+              </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

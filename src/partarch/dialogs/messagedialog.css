@@ -1,0 +1,25 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.hbox {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    //-fx-background-radius: 5, 5, 4, 3;
+    //-fx-background-radius: 0, 0, 0, 0;
+    -fx-font-size: 9pt;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-border-width: 0;
+}
+
+.vbox {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    //-fx-background-radius: 5, 5, 4, 3;
+    //-fx-background-radius: 0, 0, 0, 0;
+    -fx-font-size: 9pt;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-border-width: 0;
+}
