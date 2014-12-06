@@ -7,6 +7,7 @@ But the skeleton is ready, so its easy to add another functions.
 
 ========
 
-Using new ojdbc7.jar library recomended because there is a few "SELECT LONG" columns.
+Using new ojdbc7.jar library is highly recomended because there is a few "SELECT LONG" columns and using ojdbc6.jar makes few queries executing very slow.
 
+========
 
