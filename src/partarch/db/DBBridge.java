@@ -189,7 +189,7 @@ public class DBBridge extends Stage implements Initializable{
     /**
      * Only for tasks that comply traffic lights.
      */
-    public synchronized void checkTrafficLight(DBTask task) {
+    private synchronized void checkTrafficLight(DBTask task) {
         while (!greenlight) {
             try {
                 wait();
@@ -202,7 +202,7 @@ public class DBBridge extends Stage implements Initializable{
         greenlight = false;
     }
 
-    public synchronized void notifyTraffic(){
+    private synchronized void notifyTraffic(){
         greenlight = true;
         notifyAll();
     }
