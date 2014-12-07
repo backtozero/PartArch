@@ -20,7 +20,7 @@ package partarch.db.util.ddl;
  * 
  * @author <gotozero@yandex.com>
  */
-public class TableLockType {
+public interface TableLockType {
 
     public static final String LOCK_MODE_SHARE = new String("SHARE MODE");
     public static final String LOCK_MODE_EXCLUSIVE_NOWAIT = new String("EXCLUSIVE MODE NOWAIT");

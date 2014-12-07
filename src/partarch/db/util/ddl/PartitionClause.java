@@ -20,7 +20,7 @@ package partarch.db.util.ddl;
  * 
  * @author <gotozero@yandex.com>
  */
-public final class PartitionClause {
+public interface PartitionClause {
     
     public static final String WITH_VALIDATION = new String("WITH VALIDATION");
     public static final String WITHOUT_VALIDATION = new String("WITHOUT VALIDATION");

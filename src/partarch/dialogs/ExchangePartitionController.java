@@ -52,7 +52,7 @@ import partarch.util.ClipboardTool;
  *
  * @author <gotozero@yandex.com>
  */
-public class ExchangePartitionController extends Stage implements Initializable {
+public class ExchangePartitionController extends Stage implements Initializable, PartitionClause, TableLockType {
 
     private Stage stage;
     private Table table;
@@ -170,13 +170,13 @@ public class ExchangePartitionController extends Stage implements Initializable 
         
         partitionsTableView.setItems(table.getPartitions(false));
         
-        withValidationRadioButton.setUserData(PartitionClause.WITH_VALIDATION);
-        withoutValidationRadioButton.setUserData(PartitionClause.WITHOUT_VALIDATION);
-        updateIndexesRadioButton.setUserData(PartitionClause.UPDATE_INDEXES);
-        updateGlobalIndexesRadioButton.setUserData(PartitionClause.UPDATE_GLOBAL_INDEXES);
-        sharedModeRadioButton.setUserData(TableLockType.LOCK_MODE_SHARE);
-        exclusiveModeNowaitRadioButton.setUserData(TableLockType.LOCK_MODE_EXCLUSIVE_NOWAIT);
-        includingIndexesCheckBox.setUserData(PartitionClause.INCLUDING_INDEXES);
+        withValidationRadioButton.setUserData(WITH_VALIDATION);
+        withoutValidationRadioButton.setUserData(WITHOUT_VALIDATION);
+        updateIndexesRadioButton.setUserData(UPDATE_INDEXES);
+        updateGlobalIndexesRadioButton.setUserData(UPDATE_GLOBAL_INDEXES);
+        sharedModeRadioButton.setUserData(LOCK_MODE_SHARE);
+        exclusiveModeNowaitRadioButton.setUserData(LOCK_MODE_EXCLUSIVE_NOWAIT);
+        includingIndexesCheckBox.setUserData(INCLUDING_INDEXES);
         
         
     }
