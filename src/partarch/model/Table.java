@@ -19,7 +19,7 @@ package partarch.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import partarch.db.GetDataFromDB;
+import partarch.db.DBBridge;
 
 /**
  *
@@ -27,7 +27,7 @@ import partarch.db.GetDataFromDB;
  */
 public class Table {
     
-    private GetDataFromDB db;
+    private DBBridge db;
     
     private boolean partitionedColumnsExecuted = false;
     private ObservableList<PartitionedColumns> partitionedColumns = FXCollections.observableArrayList();
@@ -109,7 +109,7 @@ public class Table {
         this.tableType = new SimpleStringProperty(tableType);
     }
 
-    public void setDB(GetDataFromDB db) {
+    public void setDB(DBBridge db) {
         this.db = db;
     }
 

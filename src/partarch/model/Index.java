@@ -21,7 +21,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import partarch.db.GetDataFromDB;
+import partarch.db.DBBridge;
 
 /**
  *
@@ -29,7 +29,7 @@ import partarch.db.GetDataFromDB;
  */
 public class Index {
     
-    private GetDataFromDB db;    
+    private DBBridge db;    
     
     private boolean indexColumnsExecuted = false;
     private ObservableList<IndexColumn> indexColumns = FXCollections.observableArrayList();
@@ -184,7 +184,7 @@ public class Index {
      *
      * @param db
      */
-    public void setDB(GetDataFromDB db) {
+    public void setDB(DBBridge db) {
         this.db = db;
     }
 

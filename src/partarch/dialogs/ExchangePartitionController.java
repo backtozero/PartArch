@@ -40,7 +40,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import partarch.db.GetDataFromDB;
+import partarch.db.DBBridge;
 import partarch.db.util.ddl.ExchangePartition;
 import partarch.db.util.ddl.PartitionClause;
 import partarch.db.util.ddl.TableLockType;
@@ -57,7 +57,7 @@ public class ExchangePartitionController extends Stage implements Initializable,
     private Stage stage;
     private Table table;
     private TreeMap<String,Table> tableList;    
-    private GetDataFromDB db;
+    private DBBridge db;
     private ObservableList<String> tableListObservable = FXCollections.observableArrayList();
     private final ClipboardTool ct;
     private final SQLDialogController sqld;
@@ -181,7 +181,7 @@ public class ExchangePartitionController extends Stage implements Initializable,
         
     }
 
-    public ExchangePartitionController(Stage parent, Table table, TreeMap<String,Table> tableList, GetDataFromDB db, ClipboardTool ct) {
+    public ExchangePartitionController(Stage parent, Table table, TreeMap<String,Table> tableList, DBBridge db, ClipboardTool ct) {
         setTitle("Exchange");
         this.stage = parent;
         this.table = table;

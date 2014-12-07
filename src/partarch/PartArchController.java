@@ -38,7 +38,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import oracle.jdbc.pool.OracleDataSource;
-import partarch.db.GetDataFromDB;
+import partarch.db.DBBridge;
 import partarch.dialogs.AboutDialogController;
 import partarch.dialogs.ExchangePartitionController;
 import partarch.dialogs.LoginDialogController;
@@ -60,7 +60,7 @@ public class PartArchController extends BorderPane implements Initializable {
     
     private final ClipboardTool ct = new ClipboardTool();
     private Stage stage;
-    private static GetDataFromDB db;
+    private static DBBridge db;
     final TreeItem<Table> rootTreeItem = new TreeItem<>();
     Table currentTable;
     
@@ -226,7 +226,7 @@ public class PartArchController extends BorderPane implements Initializable {
      */    
     public void setStage(Stage stage) {
         this.stage = stage;
-        this.db = new GetDataFromDB(stage, this);
+        this.db = new DBBridge(stage, this);
     }
 
     @Override

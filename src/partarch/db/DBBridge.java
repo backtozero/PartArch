@@ -59,7 +59,7 @@ import oracle.jdbc.OracleConnection;
 import oracle.jdbc.pool.OracleDataSource;
 import oracle.jdbc.rowset.OracleJDBCRowSet;
 import partarch.PartArchController;
-import partarch.db.GetDataFromDB.DBTask;
+import partarch.db.DBBridge.DBTask;
 import partarch.db.util.PrepareSQL;
 import partarch.dialogs.ConfirmationDialogController;
 import partarch.model.Table;
@@ -77,7 +77,7 @@ import partarch.model.TableInfo;
  *
  * @author <gotozero@yandex.com>
  */
-public class GetDataFromDB extends Stage implements Initializable{
+public class DBBridge extends Stage implements Initializable{
 
     private PartArchController partArchController;
     private Stage stage=null;
@@ -168,7 +168,7 @@ public class GetDataFromDB extends Stage implements Initializable{
         try {
             if (conn != null) {conn.close();}
         } catch (SQLException ex) {
-            Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -178,7 +178,7 @@ public class GetDataFromDB extends Stage implements Initializable{
             try {
                 conn.cancel();
             } catch (SQLException ex) {
-                Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         databaseExecutor.shutdownNow();
@@ -195,7 +195,7 @@ public class GetDataFromDB extends Stage implements Initializable{
                 wait();
             } catch (InterruptedException ex) {
                 task.cancel();
-                Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, ex);
                 return;
             }
         }
@@ -281,16 +281,16 @@ public class GetDataFromDB extends Stage implements Initializable{
                 if (throwable != null) {
                     if (throwable instanceof SQLException) {
                         SQLException ex = (SQLException) throwable;
-                        Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, ex);
                         ExceptionDialogController exceptionDialog = new ExceptionDialogController(ex.getMessage() + "\n", ex, stage);
                         exceptionDialog.show();
                     } else if (throwable instanceof NullPointerException) {
-                        Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, throwable);
+                        Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, throwable);
                         ExceptionDialogController exceptionDialog = new ExceptionDialogController("java.lang.NullPointerException", null, stage);
                         exceptionDialog.show();
 
                     } else {
-                        Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, throwable);
+                        Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, throwable);
                         ExceptionDialogController exceptionDialog = new ExceptionDialogController(throwable.getMessage(), null, stage);
                         exceptionDialog.show();
                     }
@@ -454,7 +454,7 @@ public class GetDataFromDB extends Stage implements Initializable{
                     while (rs.next()) {
                         Index index = new Index(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),
                                 rs.getString(7).equalsIgnoreCase("yes"), rs.getInt(8), rs.getInt(9), rs.getInt(10));
-                        index.setDB(GetDataFromDB.this);
+                        index.setDB(DBBridge.this);
                         indexes.add(index);
                     }
                     return indexes;
@@ -689,7 +689,7 @@ public class GetDataFromDB extends Stage implements Initializable{
                         tableList.put(rs.getString(1), table);
                     }
                     Table table = new Table(rs.getString(1), rs.getString(2), rs.getString(3));
-                    table.setDB(GetDataFromDB.this);
+                    table.setDB(DBBridge.this);
                     tableList.put(rs.getString(1) + "." + rs.getString(2), table);
                 }
                 return tableList;
@@ -770,7 +770,7 @@ public class GetDataFromDB extends Stage implements Initializable{
      * @param parent
      * @param partArchController
      */
-    public GetDataFromDB( Stage parent, PartArchController partArchController) {
+    public DBBridge( Stage parent, PartArchController partArchController) {
         this.stage = parent;
         this.partArchController = partArchController;
         
@@ -835,7 +835,7 @@ public class GetDataFromDB extends Stage implements Initializable{
             });
 
             setOnScheduled((WorkerStateEvent event) -> {
-                GetDataFromDB.this.show();
+                DBBridge.this.show();
             });
 
             stateProperty().addListener((ObservableValue<? extends State> observable, State oldValue, State newValue) -> {
@@ -850,7 +850,7 @@ public class GetDataFromDB extends Stage implements Initializable{
             runningProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean wasRunning, Boolean isRunning) -> {
                 if (!isRunning) {
                     if (databaseExecutor.getActiveCount() == 0) {
-                        GetDataFromDB.this.hide();
+                        DBBridge.this.hide();
                     }
                 }
             });
@@ -860,16 +860,16 @@ public class GetDataFromDB extends Stage implements Initializable{
             if (getException() != null) {
                 if (getException() instanceof SQLException) {
                     SQLException ex = (SQLException) getException();
-                    Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, ex);
                     ExceptionDialogController exceptionDialog = new ExceptionDialogController(ex.getMessage(), ex, stage);
                     exceptionDialog.showAndWait();
                 } else if (getException() instanceof NullPointerException) {
-                    Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, getException());
+                    Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, getException());
                     ExceptionDialogController exceptionDialog = new ExceptionDialogController("java.lang.NullPointerException", null, stage);
                     exceptionDialog.showAndWait();
 
                 } else {
-                    Logger.getLogger(GetDataFromDB.class.getName()).log(Level.SEVERE, null, getException());
+                    Logger.getLogger(DBBridge.class.getName()).log(Level.SEVERE, null, getException());
                     ExceptionDialogController exceptionDialog = new ExceptionDialogController(getException().getMessage(), null, stage);
                     exceptionDialog.showAndWait();
                 }

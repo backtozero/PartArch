@@ -32,7 +32,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import partarch.db.GetDataFromDB;
+import partarch.db.DBBridge;
 import partarch.fx.CodeEditor;
 import partarch.util.ClipboardTool;
 
@@ -44,7 +44,7 @@ import partarch.util.ClipboardTool;
 public class SQLDialogController extends Stage implements Initializable {
     
     private Stage stage;
-    private GetDataFromDB db;
+    private DBBridge db;
     private final ClipboardTool ct;
     private String sql;    
     private List<String> sqlBlocks;
@@ -98,7 +98,7 @@ public class SQLDialogController extends Stage implements Initializable {
         });
     }
 
-    public SQLDialogController(Stage parent, GetDataFromDB db, ClipboardTool ct) {
+    public SQLDialogController(Stage parent, DBBridge db, ClipboardTool ct) {
         setTitle("SQL");
         this.stage = parent;
         this.db = db;
