@@ -239,9 +239,6 @@ public class DBBridge extends Stage implements Initializable{
     
     
     
-    
-    
-    
     public Task<Void> getDDLTask(String ddlBlock) {
         Task<Void> ddlTask = new DBTask<Void>() {
 
@@ -250,9 +247,11 @@ public class DBBridge extends Stage implements Initializable{
                 taskList.add(this);
                 setTaskName("DDL Execute");
                 setTaskMessage(ddlBlock);
+                
                 checkTrafficLight(this);
                 executeDDL(ddlBlock);
                 notifyTraffic();
+                
                 return null;
             }
 
@@ -313,6 +312,7 @@ public class DBBridge extends Stage implements Initializable{
 
     /**
      * Table row count
+     * @param tableName
      * @return Return count of rows by supplying table name
      */
     
@@ -323,7 +323,7 @@ public class DBBridge extends Stage implements Initializable{
             protected Integer call() throws Exception {
                 taskList.add(this);
                 this.setTaskName("Get Table Row Count");
-                this.setTaskMessage(tableName);
+                this.setTaskMessage(SQLTableRowCount + tableName);
                 
                 return fetchRowCount(tableName);
             }
@@ -348,6 +348,7 @@ public class DBBridge extends Stage implements Initializable{
     /**
      *
      * @param index
+     * @return Void
      */
     public Task<Void> getIndexInfoTask(Index index) {
         Task<Void> indexInfotask = new DBTask<Void>() {
@@ -357,7 +358,9 @@ public class DBBridge extends Stage implements Initializable{
                 taskList.add(this);
                 this.setTaskName("Fetch Index Info");
                 this.setTaskMessage(SQLIndexInfo);
+                
                 index.setIndexInfo(fetchIndexInfo(index.getOwner(), index.getName()));
+                
                 return null;
             }
 
@@ -402,7 +405,9 @@ public class DBBridge extends Stage implements Initializable{
                 taskList.add(this);
                 this.setTaskName("Fetch Index Columns");
                 this.setTaskMessage(SQLIndexColumns);
+                
                 index.setIndexColumns(fetchIndexColumns(index.getOwner(), index.getName()));
+                
                 return null;
             }
 
@@ -438,7 +443,9 @@ public class DBBridge extends Stage implements Initializable{
                 taskList.add(this);
                 this.setTaskName("Fetch List of Indexes");
                 this.setTaskMessage(SQLIndexes);
+                
                 table.setIndexes(fetchIndexes(table.getTableSchema(), table.getTableName()));
+                
                 return null;
             }
 
@@ -476,7 +483,10 @@ public class DBBridge extends Stage implements Initializable{
             protected Void call() throws Exception {
                 taskList.add(this);
                 this.setTaskName("Fetch Table Info");
+                this.setTaskMessage(SQLTablePartitioningInfo);
+                
                 table.setTableInfo(fetchTableInfo(table.getTableSchema(), table.getTableName()));
+                
                 return null;
             }
 
@@ -524,7 +534,9 @@ public class DBBridge extends Stage implements Initializable{
                 taskList.add(this);
                 this.setTaskName("Fetch Partitioned Columns");
                 this.setTaskMessage(SQLPartitionedColumns);
+                
                 table.setPartitionedColumns(fetchPartitionedColumns(table.getTableSchema(), table.getTableName()));
+                
                 return null;
             }
 
@@ -559,6 +571,8 @@ public class DBBridge extends Stage implements Initializable{
             protected Void call() throws Exception {
                 taskList.add(this);
                 this.setTaskName("Fetch Subpartitioned Columns");
+                this.setTaskMessage(SQLSubpartitionedColumns);
+                
                 table.setSubpartitionedColumns(fetchSubpartitionedColumns(table.getTableSchema(), table.getTableName()));
                 return null;
             }
@@ -598,7 +612,10 @@ public class DBBridge extends Stage implements Initializable{
             protected Void call() throws Exception {
                 taskList.add(this);
                 this.setTaskName("Fetch Partitions");
+                this.setTaskMessage(new PrepareSQL(SQLPartitions, table.getTableSchema(), table.getTableName()).toString());
+                
                 table.setPartitions(fetchPartitions(table.getTableSchema(), table.getTableName()));
+                
                 return null;
             }
 
